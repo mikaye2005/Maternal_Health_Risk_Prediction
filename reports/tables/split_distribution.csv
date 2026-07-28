@@ -1,0 +1,10 @@
+split,class,count
+train,low risk,243
+train,mid risk,202
+train,high risk,163
+validation,low risk,82
+validation,mid risk,67
+validation,high risk,54
+test,low risk,81
+test,mid risk,67
+test,high risk,55
