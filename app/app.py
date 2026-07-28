@@ -5,8 +5,9 @@ import numpy as np
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+if str(ROOT) in sys.path:
+    sys.path.remove(str(ROOT))
+sys.path.insert(0, str(ROOT))
 
 from app.app_helpers import load_artifacts, predict_result, what_if
 from src.config import FEATURES
