@@ -1,1 +1,1 @@
-"""MamaCare modelling package."""
+"""MamaCare source package."""

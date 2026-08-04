@@ -1,1 +1,1 @@
-"""Streamlit application package."""
+"""MamaCare Streamlit application."""

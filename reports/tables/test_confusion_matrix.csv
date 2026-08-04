@@ -1,4 +1,4 @@
-,low risk,mid risk,high risk
-low risk,56,23,2
-mid risk,55,10,2
-high risk,4,11,40
+,pred_low_risk,pred_mid_risk,pred_high_risk
+actual_low_risk,66,13,2
+actual_mid_risk,55,10,2
+actual_high_risk,5,5,45

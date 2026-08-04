@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: MamaCare Maternal Health Risk Classification Capstone
+message: Please cite this project and the UCI dataset when reusing the work.
+type: software
+authors:
+  - family-names: Mikaye
+    given-names: Collins
+version: 1.0.0
+date-released: 2026-08-03
+license: MIT
+repository-code: https://github.com/mikaye2005/Maternal_Health_Risk_Prediction
+references:
+  - type: dataset
+    title: Maternal Health Risk
+    authors:
+      - family-names: Ahmed
+        given-names: Marzia
+    year: 2020
+    doi: 10.24432/C5DP5D

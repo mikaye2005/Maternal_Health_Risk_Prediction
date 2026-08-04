@@ -1,0 +1,5 @@
+KMeansCluster,Age,SystolicBP,DiastolicBP,BS,BodyTemp,HeartRate,Age_Mean,SystolicBP_Mean,DiastolicBP_Mean,BS_Mean,BodyTemp_Mean,HeartRate_Mean,N,ProfileDescription
+0,17.0,90.0,65.0,7.5,101.0,76.0,21.98,100.46,67.73,7.97,101.45,76.64,177,Lower age profile
+1,25.0,120.0,80.0,7.1,98.0,70.0,28.59,121.91,83.51,7.26,98.09,71.78,409,Lower heart rate profile
+2,22.0,90.0,60.0,6.9,98.0,76.0,26.06,94.71,61.06,7.16,98.04,74.43,247,Lower systolic blood pressure profile
+3,48.0,130.0,90.0,15.0,98.0,77.0,45.68,131.21,90.08,14.92,98.09,77.53,181,Higher blood sugar profile

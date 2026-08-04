@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 import pandas as pd
 
@@ -10,17 +12,16 @@ def count_missing_measurements(values) -> int:
 
 
 def validate_missing_measurements(values) -> None:
-    count = count_missing_measurements(values)
-    if count > 1:
+    if count_missing_measurements(values) > 1:
         raise ValueError("A maximum of one unavailable measurement is permitted.")
 
 
-def simulate_one_missing(
-    frame: pd.DataFrame, fraction: float = 0.35, random_state: int = 42
-) -> pd.DataFrame:
+def simulate_one_missing(frame: pd.DataFrame, fraction: float = 0.35, random_state: int = 42) -> pd.DataFrame:
     masked = frame.copy()
     rng = np.random.default_rng(random_state)
     count = int(round(len(masked) * fraction))
+    if count == 0:
+        return masked
     rows = rng.choice(len(masked), size=count, replace=False)
     columns = rng.integers(0, len(FEATURES), size=count)
     for row, column in zip(rows, columns):

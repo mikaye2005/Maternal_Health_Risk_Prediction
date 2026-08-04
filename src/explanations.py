@@ -1,11 +1,12 @@
+from __future__ import annotations
+
 import numpy as np
 import pandas as pd
 
 from src.config import FEATURES
 
 
-def local_permutation_explanation(model, row: pd.DataFrame, reference: dict, class_index=None):
-    """Explain a prediction by replacing one measurement at a time with its median."""
+def local_median_replacement_explanation(model, row: pd.DataFrame, reference: dict, class_index=None):
     base = model.predict_proba(row)[0]
     class_index = int(np.argmax(base)) if class_index is None else int(class_index)
     effects = []
@@ -17,6 +18,7 @@ def local_permutation_explanation(model, row: pd.DataFrame, reference: dict, cla
         effects.append({
             "feature": feature,
             "importance": abs(delta),
-            "direction": "supports" if delta >= 0 else "opposes",
+            "delta": delta,
+            "direction": "increased the model score" if delta >= 0 else "reduced the model score",
         })
     return sorted(effects, key=lambda item: item["importance"], reverse=True)[:3]

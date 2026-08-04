@@ -1,0 +1,7 @@
+RiskLevel,predicted,records
+mid risk,low risk,55
+low risk,mid risk,13
+high risk,mid risk,5
+high risk,low risk,5
+low risk,high risk,2
+mid risk,high risk,2
