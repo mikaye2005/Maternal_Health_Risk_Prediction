@@ -20,16 +20,25 @@ def main() -> None:
     args = parser.parse_args()
     blocked_dirs = CACHE_DIRS | ({".venv"} if args.remove_venv else set())
     removed = []
+    skipped = []
 
     for path in sorted(ROOT.rglob("*"), key=lambda item: len(item.parts), reverse=True):
-        if path.is_dir() and path.name in blocked_dirs:
-            shutil.rmtree(path, ignore_errors=False)
-            removed.append(path.relative_to(ROOT).as_posix() + "/")
-        elif path.is_file() and path.suffix.lower() in BLOCKED_SUFFIXES:
-            path.unlink()
-            removed.append(path.relative_to(ROOT).as_posix())
+        relative_path = path.relative_to(ROOT)
+        if ".venv" in relative_path.parts and not args.remove_venv:
+            continue
+        try:
+            if path.is_dir() and path.name in blocked_dirs:
+                shutil.rmtree(path, ignore_errors=False)
+                removed.append(relative_path.as_posix() + "/")
+            elif path.is_file() and path.suffix.lower() in BLOCKED_SUFFIXES:
+                path.unlink()
+                removed.append(relative_path.as_posix())
+        except PermissionError:
+            skipped.append(relative_path.as_posix())
 
     print(f"Removed {len(removed)} runtime cache or temporary paths.")
+    if skipped:
+        print(f"Skipped {len(skipped)} locked ignored paths: {', '.join(skipped)}")
     if not args.remove_venv:
         print("The ignored .venv environment was preserved; final packaging excludes it automatically.")
 

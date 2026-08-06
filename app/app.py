@@ -39,64 +39,64 @@ def svg_data_uri(path: Path) -> str:
 
 LOGO_URI = svg_data_uri(ROOT / "assets" / "brand" / "mamacare_mark.svg")
 
-st.markdown(
-    f"""
+css = """
 <style>
-:root {{
-  --green-900:#064e3b; --green-700:#047857; --teal-700:#0f766e;
+:root {
+  --brand-teal-dark:#064e3b; --brand-teal:#0f766e; --brand-coral:#ec4899;
   --orange-500:#f97316; --slate-900:#0f172a; --slate-600:#475569;
-  --slate-200:#e2e8f0; --mint:#ecfdf5; --amber:#fff7ed;
-}}
-html, body, [class*="css"] {{font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;}}
-.block-container {{padding-top:1.2rem; padding-bottom:2.5rem; max-width:1220px;}}
-.hero {{
+  --slate-200:#e2e8f0; --mint:#ecfdf5; --peach:#fff0f4;
+}
+html, body, [class*="css"] {font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;}
+.block-container {padding-top:1.2rem; padding-bottom:2.5rem; max-width:1220px;}
+.hero {
   display:grid; grid-template-columns:110px 1fr; gap:1.4rem; align-items:center;
-  background:linear-gradient(135deg,#ecfdf5 0%,#ffffff 58%,#fff7ed 100%);
-  border:1px solid #d1fae5; border-radius:30px; padding:1.5rem 1.8rem;
+  background:linear-gradient(135deg,#fff0f4 0%,#f5f8f7 55%,#ecfdf5 100%);
+  border:1px solid rgba(15,118,110,.12); border-radius:30px; padding:1.5rem 1.8rem;
   box-shadow:0 22px 55px rgba(15,118,110,.10); margin-bottom:1rem;
-}}
-.hero img {{width:100px; height:100px;}}
-.brand-badge {{display:inline-flex; padding:.35rem .75rem; border-radius:999px; background:#d1fae5; color:#065f46; font-weight:800; font-size:.78rem; letter-spacing:.05em;}}
-.hero h1 {{font-size:3.15rem; line-height:1; margin:.4rem 0 .3rem; color:var(--green-900);}}
-.hero p {{font-size:1.08rem; color:#334155; margin:0; max-width:860px;}}
-.panel {{background:#fff; border:1px solid var(--slate-200); border-radius:24px; padding:1.25rem 1.35rem; box-shadow:0 14px 34px rgba(15,23,42,.05);}}
-.section-title {{font-size:1.2rem; font-weight:900; color:var(--green-900); margin-bottom:.4rem;}}
-.notice, .safe, .danger-note {{border-radius:16px; padding:.9rem 1rem;}}
-.notice {{background:#fff7ed; border-left:5px solid var(--orange-500); color:#7c2d12;}}
-.safe {{background:#ecfdf5; border-left:5px solid #10b981; color:#064e3b;}}
-.danger-note {{background:#fef2f2; border-left:5px solid #dc2626; color:#7f1d1d;}}
-.kpi-grid {{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.85rem;}}
-.kpi {{background:white; border:1px solid var(--slate-200); border-radius:20px; padding:1rem;}}
-.kpi .label {{font-size:.76rem; text-transform:uppercase; letter-spacing:.08em; color:#64748b; font-weight:800;}}
-.kpi .value {{font-size:1.65rem; font-weight:900; color:var(--slate-900);}}
-.result-card {{border-radius:26px; padding:1.45rem; border:1px solid #e2e8f0; background:white; box-shadow:0 20px 45px rgba(15,23,42,.07);}}
-.result-low {{border-left:10px solid #10b981;}}
-.result-mid {{border-left:10px solid #f59e0b;}}
-.result-high {{border-left:10px solid #dc2626;}}
-.result-title {{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:#64748b; font-weight:900;}}
-.result-value {{font-size:2rem; font-weight:950; color:#0f172a; margin:.2rem 0;}}
-.prob-track {{height:12px; background:#e2e8f0; border-radius:999px; overflow:hidden;}}
-.prob-fill {{height:100%; border-radius:999px;}}
-.prob-line {{display:grid; grid-template-columns:120px 1fr 58px; align-items:center; gap:.8rem; margin:.58rem 0;}}
-.prob-label {{font-weight:750; color:#334155;}}
-.prob-value {{font-weight:850; text-align:right; color:#0f172a;}}
-.workflow {{display:grid; grid-template-columns:repeat(5,1fr); gap:.55rem; margin-top:.75rem;}}
-.workflow div {{background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:.75rem; text-align:center; font-weight:750; color:#334155;}}
-.small-muted {{font-size:.88rem; color:#64748b;}}
-[data-testid="stTabs"] [data-baseweb="tab-list"] {{gap:.35rem;}}
-[data-testid="stTabs"] button {{border-radius:999px; padding:.5rem .9rem;}}
-footer {{visibility:hidden;}}
-@media (max-width:760px) {{
-  .hero {{grid-template-columns:72px 1fr; padding:1.1rem; border-radius:22px;}}
-  .hero img {{width:66px; height:66px;}}
-  .hero h1 {{font-size:2.2rem;}}
-  .kpi-grid, .workflow {{grid-template-columns:1fr;}}
-  .prob-line {{grid-template-columns:95px 1fr 48px; gap:.45rem;}}
-}}
+}
+.hero img {width:100px; height:100px;}
+.brand-badge {display:inline-flex; padding:.35rem .75rem; border-radius:999px; background:#e0f7f3; color:var(--brand-teal-dark); font-weight:800; font-size:.78rem; letter-spacing:.05em;}
+.hero h1 {font-size:3.15rem; line-height:1; margin:.4rem 0 .3rem; color:var(--brand-teal-dark);}
+.hero p {font-size:1.08rem; color:#334155; margin:0; max-width:860px;}
+.panel {background:#fff; border:1px solid var(--slate-200); border-radius:24px; padding:1.25rem 1.35rem; box-shadow:0 14px 34px rgba(15,23,42,.05);}
+.section-title {font-size:1.2rem; font-weight:900; color:var(--brand-teal-dark); margin-bottom:.4rem;}
+.notice, .safe, .danger-note {border-radius:16px; padding:.9rem 1rem;}
+.notice {background:#fff0f4; border-left:5px solid var(--brand-coral); color:#9f1239;}
+.safe {background:#ecfdf5; border-left:5px solid var(--brand-teal); color:var(--brand-teal-dark);}
+.danger-note {background:#fef2f2; border-left:5px solid #dc2626; color:#7f1d1d;}
+.kpi-grid {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.85rem;}
+.kpi {background:white; border:1px solid var(--slate-200); border-radius:20px; padding:1rem;}
+.kpi .label {font-size:.76rem; text-transform:uppercase; letter-spacing:.08em; color:#64748b; font-weight:800;}
+.kpi .value {font-size:1.65rem; font-weight:900; color:var(--slate-900);}
+.result-card {border-radius:26px; padding:1.45rem; border:1px solid #e2e8f0; background:white; box-shadow:0 20px 45px rgba(15,23,42,.07);}
+.result-low {border-left:10px solid var(--brand-teal);}
+.result-mid {border-left:10px solid var(--brand-coral);}
+.result-high {border-left:10px solid #dc2626;}
+.result-title {font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:#64748b; font-weight:900;}
+.result-value {font-size:2rem; font-weight:950; color:#0f172a; margin:.2rem 0;}
+.prob-track {height:12px; background:#e2e8f0; border-radius:999px; overflow:hidden;}
+.prob-fill {height:100%; border-radius:999px;}
+.prob-line {display:grid; grid-template-columns:120px 1fr 58px; align-items:center; gap:.8rem; margin:.58rem 0;}
+.prob-label {font-weight:750; color:#334155;}
+.prob-value {font-weight:850; text-align:right; color:#0f172a;}
+.workflow {display:grid; grid-template-columns:repeat(5,1fr); gap:.55rem; margin-top:.75rem;}
+.workflow div {background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:.75rem; text-align:center; font-weight:750; color:#334155;}
+.small-muted {font-size:.88rem; color:#64748b;}
+.hero-subtitle {max-width:780px; color:#334155; margin-top:.35rem; line-height:1.6;}
+[data-testid="stTabs"] [data-baseweb="tab-list"] {gap:.35rem;}
+[data-testid="stTabs"] button {border-radius:999px; padding:.5rem .9rem;}
+footer {visibility:hidden;}
+@media (max-width:760px) {
+  .hero {grid-template-columns:72px 1fr; padding:1.1rem; border-radius:22px;}
+  .hero img {width:66px; height:66px;}
+  .hero h1 {font-size:2.2rem;}
+  .hero-subtitle {font-size:.95rem;}
+  .kpi-grid, .workflow {grid-template-columns:1fr;}
+  .prob-line {grid-template-columns:95px 1fr 48px; gap:.45rem;}
+}
 </style>
-""",
-    unsafe_allow_html=True,
-)
+"""
+st.markdown(css, unsafe_allow_html=True)
 
 
 @st.cache_resource(show_spinner=False)
@@ -180,7 +180,7 @@ st.markdown(
   <div>
     <span class="brand-badge">MATERNAL HEALTH CLASSIFICATION CAPSTONE</span>
     <h1>MamaCare</h1>
-    <p>A reproducible screening-support prototype that classifies six routine measurements as Low Risk, Mid Risk or High Risk and reports uncertainty, model evidence and responsible-use limitations.</p>
+    <p class="hero-subtitle">A maternal-health risk classifier aligned to the new MamaCare branding, using six routine measurements.</p>
   </div>
 </div>
 """,
@@ -379,7 +379,7 @@ with assess_tab:
         st.caption(
             "The class scores describe the model output. They are not medically validated probabilities."
         )
-        colors = {"low risk": "#10b981", "mid risk": "#f59e0b", "high risk": "#dc2626"}
+        colors = {"low risk": "#0f766e", "mid risk": "#ec4899", "high risk": "#dc2626"}
         for label, probability in sorted(result["probabilities"].items(), key=lambda item: item[1], reverse=True):
             st.markdown(
                 probability_html(metadata["label_mapping"][label], probability, colors[label]),
