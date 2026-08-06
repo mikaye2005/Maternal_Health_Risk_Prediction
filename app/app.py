@@ -8,12 +8,14 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) in sys.path:
-    sys.path.remove(str(ROOT))
-sys.path.insert(0, str(ROOT))
+APP_DIR = Path(__file__).resolve().parent
+ROOT = APP_DIR.parent
+for import_path in (str(ROOT), str(APP_DIR)):
+    if import_path in sys.path:
+        sys.path.remove(import_path)
+sys.path[:0] = [str(APP_DIR), str(ROOT)]
 
-from app.app_helpers import (
+from app_helpers import (
     DISPLAY_LABELS,
     UNITS,
     build_assessment_summary,
